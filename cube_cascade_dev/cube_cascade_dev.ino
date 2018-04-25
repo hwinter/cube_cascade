@@ -31,13 +31,23 @@ bool should_run;
 
 
 void setup() {
+  int i = 0;
+  while (i < PIXEL_COUNT) {
+    strip.setPixelColor(i - 1, 0, 0, 0);
+    strip.setPixelColor(i, 255, 0, 0);
+    strip.show();
+    i++;
+    delay(10);
+  }
+  strip.setPixelColor(i - 1, 0, 0, 0);
+  strip.show();
   //  initTest();
   randomSeed(analogRead(0));
   Serial.begin(9600);
   //  int red = 255;
   //  int green = 0;
   //  int blue = 0;
-//  strip.setBrightness(25);
+  //  strip.setBrightness(25);
   strip.begin();
   strip.show();
 
