@@ -28,19 +28,10 @@ color pink;
 color Color_List[8];
 
 bool should_run;
-
+int index;
 
 void setup() {
-  int i = 0;
-  while (i < PIXEL_COUNT) {
-    strip.setPixelColor(i - 1, 0, 0, 0);
-    strip.setPixelColor(i, 255, 0, 0);
-    strip.show();
-    i++;
-    delay(10);
-  }
-  strip.setPixelColor(i - 1, 0, 0, 0);
-  strip.show();
+  index = 0;
   //  initTest();
   randomSeed(analogRead(0));
   Serial.begin(9600);
@@ -95,8 +86,13 @@ void loop() {
   int randx = int(random(8));
   int randy = int(random(3) + 3);
   while (should_run == true) {
-    particalTrack(randx, 3);
-    should_run = false;
+    randx = random(8);
+    randy = random(8);
+    particalTrack(randx, randy);
+    if (index > 3) {
+      should_run = false;
+      //      index++;
+    }
   }
   //  particalTrack(randx, randy);
   fadePixel(15);
@@ -131,8 +127,9 @@ void particalTrack(int start_x, int start_y) {
     //    Serial.println(new_x);
 
     if (new_x < 7) {
-      setPixel(new_x, new_z, new_y, Color_List[ii]);
-
+      if (new_x > 0) {
+        setPixel(new_x, new_z, new_y, Color_List[ii]);
+      }
     }
     ii--;
     delay(50);
