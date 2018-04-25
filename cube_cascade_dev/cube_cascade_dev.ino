@@ -24,6 +24,7 @@ color red;
 color blue;
 color green;
 color pink;
+color sun;
 
 color Color_List[8];
 
@@ -34,11 +35,11 @@ void setup() {
   index = 0;
   //  initTest();
   randomSeed(analogRead(0));
-  Serial.begin(9600);
+  Serial.begin(115200);
   //  int red = 255;
   //  int green = 0;
   //  int blue = 0;
-  //  strip.setBrightness(25);
+  //    strip.setBrightness(25);
   strip.begin();
   strip.show();
 
@@ -63,26 +64,40 @@ void setup() {
   green.green = 255;
   green.blue = 0;
 
-  //  pink.red = 241;
-  //  pink.green = 156;
-  //  pink.blue = 187;
+  //  pink.red = 221;
+  //  pink.green = 160;
+  //  pink.blue = 221;
 
   pink.red = 255;
   pink.green = 0;
-  pink.blue = 0;
+  pink.blue = 255;
+
+  sun.red = 100;
+  sun.blue = 6;
+  sun.green = 26;
 
   Color_List[0] = red;
   Color_List[1] = red;
-  Color_List[2] = blue;
-  Color_List[3] = blue;
-  Color_List[4] = green;
-  Color_List[5] = green;
+  Color_List[2] = green;
+  Color_List[3] = green;
+  Color_List[4] = blue;
+  Color_List[5] = blue;
   Color_List[6] = pink;
   Color_List[7] = pink;
 
 }
 
 void loop() {
+
+//  setPixel(3, 3, 3, sun);
+//  setPixel(3, 3, 4, sun);
+//  setPixel(3, 2, 3, sun);
+//  setPixel(3, 2, 4, sun);
+//  setPixel(4, 3, 3, sun);
+//  setPixel(4, 3, 4, sun);
+//  setPixel(4, 2, 3, sun);
+//  setPixel(4, 2, 4, sun);
+
   int randx = int(random(8));
   int randy = int(random(3) + 3);
   while (should_run == true) {
@@ -103,13 +118,13 @@ void loop() {
 
 void particalTrack(int start_x, int start_y) {
 
-  int x = start_x;
-  int y = start_y;
-  int z = 7;
+  float x = start_x;
+  float y = start_y;
+  float z = 7;
 
-  int new_x = x;
-  int new_y = y;
-  int new_z = 0;
+  float new_x = x;
+  float new_y = y;
+  float new_z = 0;
 
   int ii = z;
 
